@@ -1,8 +1,9 @@
-# React + Vite
+This is where you can find all the documents' links.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Youtube Link: https://youtu.be/wUb5HIxcxNs Google Docs Link: https://docs.google.com/document/d/1nHXpfTR31BDmtbuzeGhS1GzpyN6GoI7twPj4NFvoUAQ/edit?usp=sharing (The File is also included in the repo)
 
-Currently, two official plugins are available:
+How to Use:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Open your terminal, go to RPG folder, then run "npm install"
+Run "npm run dev"
+Go to the link provided in the terminal

@@ -29,13 +29,6 @@ function MyFirebase(){
 
     const me = {};
     
-    
-
-    // me.getProducts = async() => { 
-    //     const productsRef = collection(db, "Products");
-    //     const querySnapshot = await getDocs(productsRef);
-    //     return querySnapshot.docs.map((d) => d.data());
-    // }
 
 
     me.getCurrentPlayer = async() => {
@@ -47,6 +40,26 @@ function MyFirebase(){
     me.changeCurrentPlayer = async(name) => {
         await setDoc(doc(db, "CurrentPlayer", "NjXBWw5sjEdb7ettB94a"), {
             name: name,
+        });
+    }
+
+    me.getCurrentCharacter = async() => {
+        const CurrentCharacterRef = collection(db, "CurrentCharacter");
+        const querySnapshot = await getDocs(CurrentCharacterRef);
+        return querySnapshot.docs.map((d) => d.data());
+    }
+
+    me.changeCurrentCharacter = async(character) => {
+        await setDoc(doc(db, "CurrentCharacter", "4i4eNqeLM08O6Px756Le"), {
+            Playername: character.playername,
+            Name: character.name,
+            Profession: character.profession,
+            Health: character.health,
+            Damage_rate: character.damage_rate,
+            Damage_block_rate: character.damage_block_rate,
+            Weapon: character.weapon.show_stat(),
+            Armor: character.armor.show_stat(),
+            Inventory: character.inventory,
         });
     }
 
@@ -86,53 +99,27 @@ function MyFirebase(){
         // console.log(accounts);
     }
 
-    me.getCharacters = async(playername) => { 
-        const CharactersRef = collection(db, "Characters");
-        const querySnapshot = await getDocs(CharactersRef);
-        
+    me.getCharacters = async() => { 
+        const CharacterListRef = collection(db, "CharacterList");
+        const querySnapshot = await getDocs(CharacterListRef);
         return querySnapshot.docs.map((d) => d.data());
     }
 
-    me.createNewCharacter = async(playername, name, classType) => {
-        if (classType === "warrior"){
-
-        }
-        else if (classType === "archor"){
-
-        }
-        else if (classType === "mega"){
-
-        }
-
-        await setDoc(doc(db, "PlayerAccounts", (playername + name + classType + ("" + (await me.getCharacters()).length))), {
-            playername: playername,
-            name: name,
-            classType: classType,
-            password: pwd,
+    me.createNewCharacter = async(character) => {
+        await setDoc(doc(db, "CharacterList", character.playername + character.name + character.profession + (await me.getCharacters()).length), {
+            Playername: character.playername,
+            Name: character.name,
+            Profession: character.profession,
+            Health: character.health,
+            Damage_rate: character.damage_rate,
+            Damage_block_rate: character.damage_block_rate,
+            Weapon: character.weapon.show_stat(),
+            Armor: character.armor.show_stat(),
+            Inventory: character.inventory,
         });
     }
 
-    // me.addProduct = async(name, price) => {
-    //     await setDoc(doc(db, "Products", (name + ("" + (await me.getProducts()).length))), {
-    //         id: (await me.getProducts()).length,
-    //         name: name,
-    //         price: price,
-    //         image: "https://via.placeholder.com/150",
-    //       });
-    // }
 
-    // me.addProductToBuy = async(product) => {
-    //     await setDoc(doc(db, "ProductsToBuy", (product.name + ("" + (await me.getProductsToBuy()).length))), {
-    //         id: (await me.getProductsToBuy()).length,
-    //         name: product.name,
-    //         price: product.price,
-    //       });
-    // }
-
-    // me.removeProductToBuy = async(product) => {
-    //     console.log((product.name + "" +product.id));
-    //     await deleteDoc(doc(db, "ProductsToBuy", (product.name + "" +product.id)));
-    // }
     return me;
 }
 

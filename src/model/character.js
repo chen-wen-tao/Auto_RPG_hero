@@ -1,35 +1,44 @@
 import Armor from "./armor";
 import Weapon from "./weapon";
 
-export default function Character(playername, name, profession, health=100, damage_rate, damage_block_rate, weapon, armor, inventory=[]) {
+export default function Character(playername, name, profession, new_c=true, health=100, damage_rate=1000, damage_block_rate=10000, weapon=Weapon("sword", 20), armor=Armor("Plate armour", 30), inventory=[]) {
     const me = {};
     me.playername = playername;
     me.name = name;
     me.profession = profession;
-    if (profession === "warrior"){
-      me.health = 200;
-      me.damage_rate = 10000;
-      me.damage_block_rate = 10000;
-      me.weapon = Weapon("sword", 20);
-      me.armor = Armor("Plate armour", 30);
+    if (new_c){
+      if (profession === "warrior"){
+        me.health = 200;
+        me.damage_rate = 10000;
+        me.damage_block_rate = 10000;
+        me.weapon = Weapon("sword", 20);
+        me.armor = Armor("Plate armour", 30);
+      }
+      else if (profession === "archor"){
+        me.health = 200;
+        me.damage_rate = 10000;
+        me.damage_block_rate = 10000;
+        me.weapon = Weapon("sword", 20);
+        me.armor = Armor("Plate armour", 30);
+      }
+      else if (profession === "mega"){
+        me.health = 200;
+        me.damage_rate = 10000;
+        me.damage_block_rate = 10000;
+        me.weapon = Weapon("sword", 20);
+        me.armor = Armor("Plate armour", 30);
+      }
+      me.inventory = [];
     }
-    else if (profession === "archor"){
-      me.health = 200;
-      me.damage_rate = 10000;
-      me.damage_block_rate = 10000;
-      me.weapon = Weapon("sword", 20);
-      me.armor = Armor("Plate armour", 30);
-    }
-    else if (profession === "mega"){
-      me.health = 200;
-      me.damage_rate = 10000;
-      me.damage_block_rate = 10000;
-      me.weapon = Weapon("sword", 20);
-      me.armor = Armor("Plate armour", 30);
+    else{
+      me.health = health;
+      me.damage_rate = damage_rate;
+      me.damage_block_rate = damage_block_rate;
+      me.weapon = weapon;
+      me.armor = armor;
+      me.inventory = inventory;
     }
     
-    // me.level = level;
-    me.inventory = inventory;
 
     me.lvl_up = () => {
       me.health += 10;
@@ -60,16 +69,17 @@ export default function Character(playername, name, profession, health=100, dama
     }
 
     me.equip_item = (item) => {
-      if (item instanceof Weapon){
+      if (item.damage_rate != null){
         me.weapon = item;
       }
-      if (item instanceof Armor){
+      if (item.damage_block_rate != null){
         me.armor = item;
       }
     }
 
     me.obtain_item = (item) => {
-      me.inventory.push(item)
+      me.inventory.push(item);
+      console.log(me.inventory);
     }
 
     me.change_name = (new_name) => {

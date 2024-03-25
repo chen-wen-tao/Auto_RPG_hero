@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { myFirebase } from "../model/MyFirebase";
 import Create_character from "./create_character";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
 export default function LoginPage({ AddPlayer, CheckPlayer }){
     const usernameRef = useRef();
@@ -13,9 +14,20 @@ export default function LoginPage({ AddPlayer, CheckPlayer }){
     // const [currentplayer, setcurrentplayer] = useState();
     
     // console.log( (myFirebase.getPlayerAccounts()).length)
-    if (myFirebase.getCurrentPlayer != "haha"){
-        navigate('/create-character', { replace: true });
-    }
+    useEffect ( () => {
+        const gotonextpage = async() => {
+            const isloggedin = await myFirebase.getCurrentPlayer();
+            console.log(isloggedin[0].name);
+            if (isloggedin[0].name != null){
+                navigate('/create-character', { replace: true });
+            }
+        }
+        gotonextpage();
+        }, [])
+    
+    // if (myFirebase.getCurrentPlayer != "haha"){
+    //     navigate('/create-character', { replace: true });
+    // }
 
 
 
@@ -28,14 +40,12 @@ export default function LoginPage({ AddPlayer, CheckPlayer }){
         
 
         AddPlayer(usernameRef.current.value, passwordRef.current.value);
-        navigate('/create-character', { replace: true });
+        // navigate('/create-character', { replace: true });
     };
 
     const onCheckPlayer = () => {
         CheckPlayer(usernameRef.current.value, passwordRef.current.value);
-        if (myFirebase.getCurrentPlayer != "haha"){
-            navigate('/create-character', { replace: true });
-        }
+        
     };
 
     return (
@@ -63,4 +73,9 @@ export default function LoginPage({ AddPlayer, CheckPlayer }){
 
     );
 
+}
+
+LoginPage.propTypes = {
+    onAddPlayer: PropTypes.func,
+    onCheckPlayer: PropTypes.func,
 }

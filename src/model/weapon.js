@@ -5,7 +5,7 @@ export default function Weapon(name, damage_rate){
 
 
     me.show_stat = () => {
-        return(this.name + ":" + this.damage_rate);
+        return(me.name + ":" + me.damage_rate);
     }
 
     return me;
