@@ -1,0 +1,39 @@
+  .health-bar-1 {
+    border: 7px solid; float: left; width: 45%; height: 10%; text-align: left; 
+    background: linear-gradient(
+    to right,
+    red 100%,
+    blue 0%
+    );
+  }
+
+  .health-bar-2 {
+    border: 7px solid; float: right; width: 45%; height: 10%; text-align: right; 
+    background: linear-gradient(
+      to left,
+      red 100%,
+      blue 0%
+    );
+  }
+
+  .character {
+    margin-top: 30px; margin-left: 100px;  border: 5px solid; width: 35%; float: left; height: 500px; text-align: left; text-wrap: wrap; overflow-wrap: break-word;
+  }
+
+  .enemy {
+    margin-top: 30px; margin-right: 100px; border: 5px solid; width: 35%; float: right; height: 500px; text-align: left;
+  }
+
+  .bag {
+    margin-top: 30px; margin-left: 300px; border: 5px solid; width: 15%; float: left; height: 50px; text-align: center;
+  }
+
+  .fight {
+    margin-top: 30px; margin-right: 300px; border: 5px solid; width: 15%; float: right; height: 50px; text-align: center;
+  }
+
+  .item {
+    margin-top: 30px; margin-right: 100px; margin-left: 100px;
+  }
+
+
