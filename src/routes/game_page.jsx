@@ -21,6 +21,7 @@ export default function Game_page({ currentcharacter }){
     me.weaponlist = Weapon_list();
     me.armorlist = Armor_list();
     me.namelst = Enemy_name_list();
+
     me.currentcharacter = Character(currentcharacter.playername, currentcharacter.name, currentcharacter.profession, false,
         currentcharacter.health, currentcharacter.damage_rate, currentcharacter.damage_block_rate, currentcharacter.weapon, currentcharacter.armor,
         currentcharacter.inventory);
@@ -33,7 +34,7 @@ export default function Game_page({ currentcharacter }){
         );
     const [currentenemy, setcurrentenemy] = useState(me.tmp_enemy);
     const [currentchar, setcurrentchar] = useState(me.currentcharacter);
-
+    console.log(me.currentcharacter);
     const onClickChangeItem = () => {
         let tmp;
         console.log(me.currentcharacter.inventory);

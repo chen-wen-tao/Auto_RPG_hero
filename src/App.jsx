@@ -25,19 +25,22 @@ export default function App() {
     useEffect ( () => {
         const getCurrentCharacter = async() => {
           const ccharacter = await myFirebase.getCurrentCharacter();
-          if (ccharacter.Name != null){
+          console.log(ccharacter[0].Playername, ccharacter[0].Name, ccharacter[0].Profession);
+          if (ccharacter[0].Name != null){
+            
             let tmp_char = Character(ccharacter[0].Playername, ccharacter[0].Name, ccharacter[0].Profession, false, ccharacter[0].Health, 
                 ccharacter[0].Damage_rate, ccharacter[0].Damage_nlock_rate, 
                 Weapon((ccharacter[0].Weapon.split(":"))[0], (ccharacter[0].Weapon.split(":"))[1]),  
                 Armor((ccharacter[0].Armor.split(":"))[0], (ccharacter[0].Armor.split(":"))[1]),
                 ccharacter[0].Inventory);
               setcurrentcharacter(tmp_char);
+              console.log(tmp_char);
           }
         }
         getCurrentCharacter();
       }, [])
 
-    // console.log(currentcharacter);
+    // console.log(currentcharacter.show_stat());
 
       
     const AddPlayer = (name, password) => {

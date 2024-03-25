@@ -50,6 +50,7 @@ function MyFirebase(){
     }
 
     me.changeCurrentCharacter = async(character) => {
+        console.log(character.show_stat());
         await setDoc(doc(db, "CurrentCharacter", "4i4eNqeLM08O6Px756Le"), {
             Playername: character.playername,
             Name: character.name,
