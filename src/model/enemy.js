@@ -17,7 +17,7 @@ export default function Enemy(name, health=100, damage_rate, damage_block_rate, 
         "Health: " + me.health + "\n" +
         "Damage Rate: " + me.damage_rate + "\n" +
         "Damage Block Rate: " + me.damage_block_rate + "\n" +
-        "Weapon: " + me.weapon.show_stat() + "\n" +
+        "Weapon: " + me.weapon.show_stat() + "\n " +
         "Armor: " + me.armor.show_stat() + "\n"
       );
     }
